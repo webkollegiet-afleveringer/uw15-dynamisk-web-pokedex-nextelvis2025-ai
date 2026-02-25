@@ -13,7 +13,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
     .then(response => response.json())
     .then(data => {
         allPokemon = data.results;
-         totalPokemon = data.results.length; //thing to note: the API returns 151 pokemon, but we can adjust this if needed
+         totalPokemon = data.results.length; //thing to note: the API returns 151 pokemon,
         displayPage(currentPage);
         updateButtons();
         updatePageInfo();
