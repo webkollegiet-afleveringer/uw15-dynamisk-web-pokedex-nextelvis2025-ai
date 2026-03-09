@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="FetchPokemon.js" defer></script>
+</head>
+<body>
+    <div class="pokedex-container">
+        <div class="pokedex-header">
+            <h1>Pokédex</h1>
+        </div>
+        <div class="screen">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <ul id="pokemon-list"></ul>
+        </div>
+        <div id="pagination">
+            <button id="prevBtn" disabled>← Forrige</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn">Næste →</button>
+        </div>
+    </div>
+
+</body>
+</html>
