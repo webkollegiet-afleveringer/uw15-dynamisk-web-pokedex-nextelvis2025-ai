@@ -11,6 +11,14 @@ const typeColors = {
     normal: "#A8A878",
     flying: "#A890F0",
     ground: "#E0C068",
+    dragon: "#7037ff",
+    steel: "#B7B9D0",
+    psychic: "#FB5584",
+    fighting: "#C12239",
+    rock: "#B69E31",
+    ghost: "#70559b",
+    dark: "#75574c",
+    ice: "#9AD6DF",
     fairy: "#EE99AC"
 };
 
@@ -21,6 +29,19 @@ if (name) {
 
             const mainType = data.types[0].type.name;
             const bgColor = typeColors[mainType] || "#999";
+            // helper to return a lighter version of a hex color. Cool stuff! :D
+            function lighten(hex, percent) {
+                hex = hex.replace(/^#/, "");
+                const num = parseInt(hex, 16);
+                const r = (num >> 16) & 0xff;
+                const g = (num >> 8) & 0xff;
+                const b = num & 0xff;
+                const newR = Math.min(255, Math.floor(r + (255 - r) * percent));
+                const newG = Math.min(255, Math.floor(g + (255 - g) * percent));
+                const newB = Math.min(255, Math.floor(b + (255 - b) * percent));
+                return `#${((1 << 24) + (newR << 16) + (newG << 8) + newB).toString(16).slice(1)}`;
+            }
+            const barBg = lighten(bgColor, 0.4); // about 40% lighter
 
             document.body.style.background = bgColor;
 
@@ -36,7 +57,7 @@ if (name) {
                 <div class="stat-row">
                     <div class="stat-name">${stat.stat.name.slice(0,3)}</div>
                     <div class="stat-value">${stat.base_stat}</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" style="background:${barBg}">
                         <div class="stat-bar-fill"
                              style="width:${stat.base_stat / 2}%; background:${bgColor}">
                         </div>
@@ -51,6 +72,8 @@ if (name) {
                     <div class="pokemon-number">
                         #${String(data.id).padStart(3, "0")}
                     </div>
+                    <a href="?name=${data.id - 1}" class="nav-arrow prev" ${data.id > 1 ? '' : 'style="display:none;"'}>‹</a>
+                    <a href="?name=${data.id + 1}" class="nav-arrow next">›</a>
                 </div>
 
                 <img class="pokemon-image"
