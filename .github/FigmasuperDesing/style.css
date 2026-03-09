@@ -19,8 +19,10 @@ body {
     
     background-color: #800101;
     border-radius: 20px;
-    padding: 20px;
+    padding: 5px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    max-width: 650px;
+    width: 100%;
 }
 
 
@@ -35,12 +37,20 @@ body {
 }
 
 
+
+
+
+
 .screen {
     background: #f2f2f2;
     border-radius: 15px;
+    width: 100%;
+    max-width: 650px;
+
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
     padding: 15px;
-    min-height: 500px;
-    width: 650px;
 }
 
 
@@ -55,11 +65,28 @@ body {
     background: #e0e0e0;
 }
 
+#toggleSearch {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 14px;
+    outline: none;
+    background: #d0d0d0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#toggleSearch:hover {
+    background: #c0c0c0;
+}
+
 
 #pokemon-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 12px;
 }
 
@@ -96,11 +123,11 @@ body {
 }
 
 
-#pokemon-list a {
-    text-decoration: none;
+.pokemon-name {
     font-weight: 600;
-    text-transform: capitalize;
     font-size: 13px;
+    text-transform: capitalize;
+    color: #333;
 }
 
 
@@ -122,9 +149,66 @@ body {
 
 
 a {
-    background-color: #800101;
+    
     border-radius: 10%;
-    color: white;
+    color: rgb(255, 5, 5);
 
     padding: 5px 10px;
+}
+
+
+
+
+.pokeball {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background:
+        linear-gradient(to bottom, rgb(255, 0, 0) 50%, #ffffff 50%);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.pokeball::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 4px;
+    background: #333;
+    transform: translate(-50%, -50%);
+}
+
+.pokeball::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border: 3px solid #333;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+.pokemon-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+.TheOne {
+    flex: 1;
+    overflow-y: auto;
 }
